@@ -7,6 +7,8 @@ const redis = require("../config/cache")
 
 // register user
 async function registerUser(req,res) {
+    console.log("BODY:",req.body);
+    
     const {username,email,password} = req.body
 
     const isAlreadyRegistered = await userModel.findOne({
@@ -106,6 +108,7 @@ async function getMe(req,res) {
     })
 }
 
+// logout user
 async function logoutUser(req,res){
     const token = req.cookies.token
 

@@ -1,11 +1,13 @@
 import React from 'react'
-import FaceExpression from './feature/Expression/components/FaceExpression'
+import AppRoutes from './AppRoutes'
+import "./feature/shared/styles/global.scss"
+import AuthContext from './feature/auth/context/AuthContext'
 
 const App = () => {
   return (
-    <div>
-      <FaceExpression/>
-    </div>
+    <AuthContext>
+      <AppRoutes/>
+    </AuthContext>
   )
 }
 

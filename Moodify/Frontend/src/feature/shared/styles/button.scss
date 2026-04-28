@@ -1,0 +1,18 @@
+.form-container button {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+
+  background: linear-gradient(to right, #6a5acd, #00c9ff);
+  color: #fff;
+
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.form-container button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 201, 255, 0.4);
+}

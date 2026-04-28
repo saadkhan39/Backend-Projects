@@ -1,0 +1,70 @@
+main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .form-container {
+  width: 360px;
+  padding: 35px 30px;
+  border-radius: 20px;
+
+  // ✅ DARK GLASS
+  background: rgba(255, 255, 255, 0.05);
+
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+
+  text-align: center;
+}
+
+.form-container h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #fff;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-container input {
+  padding: 12px 15px;
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  backdrop-filter: blur(10px);
+
+  color: white;
+  outline: none;
+}
+
+.form-container input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.form-container input:focus {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+
+
+.form-container p {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.form-container a {
+  color: #00c9ff;
+  font-weight: 600;
+  text-decoration: none;
+}
+}
