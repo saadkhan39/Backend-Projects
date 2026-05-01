@@ -7,7 +7,6 @@ const redis = require("../config/cache")
 
 // register user
 async function registerUser(req,res) {
-    console.log("BODY:",req.body);
     
     const {username,email,password} = req.body
 

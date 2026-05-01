@@ -49,7 +49,7 @@ const Register = () => {
             id="password"
             placeholder="Enter password"
           />
-          <button>Register</button>
+          <button className='primary-btn'>Register</button>
           <p>
             Already have an account? <Link to={"/login"}>Login</Link>
           </p>

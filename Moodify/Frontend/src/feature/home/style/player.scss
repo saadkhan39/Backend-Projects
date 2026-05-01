@@ -1,0 +1,237 @@
+.player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  // ✅ GLASS BACKGROUND
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  z-index: 100;
+
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.6);
+
+  /* ── Song Info ── */
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 200px;
+  }
+
+  &__poster {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  &__mood {
+    font-size: 0.72rem;
+    text-transform: capitalize;
+
+    // 🔥 neon badge
+    color: #00c9ff;
+    background: rgba(0, 201, 255, 0.12);
+
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+
+  /* ── Progress ── */
+  &__progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+  }
+
+  &__time {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  &__progress {
+    position: relative;
+    flex: 1;
+    height: 4px;
+
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      height: 6px;
+
+      .player__progress-thumb {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+      }
+    }
+  }
+
+  &__progress-fill {
+    height: 100%;
+
+    // 🔥 gradient progress
+    background: linear-gradient(to right, #6a5acd, #00c9ff);
+    border-radius: 4px;
+  }
+
+  &__progress-thumb {
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%) scale(0.6);
+
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+
+    background: #fff;
+
+    opacity: 0;
+    transition: 0.2s;
+  }
+
+  /* ── Controls ── */
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    color: rgba(255, 255, 255, 0.7);
+
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.3s;
+
+    &:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    &--play {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+
+      // 🔥 main gradient button
+      background: linear-gradient(to right, #6a5acd, #00c9ff);
+      border: none;
+      color: #fff;
+
+      &:hover {
+        box-shadow: 0 5px 20px rgba(0, 201, 255, 0.5);
+      }
+    }
+
+    &--speed {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+
+      &:hover {
+        border-color: #00c9ff;
+        color: #00c9ff;
+      }
+    }
+  }
+
+  /* ── Speed Menu ── */
+  &__speed-menu {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+
+    // glass dropdown
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    border-radius: 10px;
+    padding: 6px;
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  }
+
+  &__speed-option {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+
+    padding: 6px 12px;
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    &.active {
+      background: rgba(0, 201, 255, 0.2);
+      color: #00c9ff;
+      font-weight: 700;
+    }
+  }
+
+  /* ── Volume ── */
+  &__volume-slider {
+    width: 80px;
+    height: 4px;
+
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+
+    &::-webkit-slider-thumb {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+
+      background: #00c9ff;
+    }
+  }
+}
+
+/* 🔥 Responsive */
+@media (max-width: 640px) {
+  .player {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 10px 16px;
+  }
+}
