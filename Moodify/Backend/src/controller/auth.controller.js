@@ -38,7 +38,12 @@ async function registerUser(req,res) {
         expiresIn:"3d"
     })
 
-    res.cookie("token",token)
+    res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  path: "/"
+});
 
     return res.status(201).json({
         message:"user registered successfully",
@@ -85,10 +90,11 @@ async function loginUser(req,res) {
         expiresIn:"3d"
     })
 
-    res.cookie("token", token, {
+   res.cookie("token", token, {
   httpOnly: true,
-  secure: true,       // 🔥 REQUIRED for HTTPS (Render)
-  sameSite: "none"    // 🔥 REQUIRED for cross-origin
+  secure: true,
+  sameSite: "none",
+  path: "/"
 });
 
     return res.status(200).json({
@@ -115,7 +121,12 @@ async function getMe(req,res) {
 async function logoutUser(req,res){
     const token = req.cookies.token
 
-    res.clearCookie("token")
+    res.clearCookie("token", {
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  path: "/"
+});
 
    await redis.set(token,Date.now().toString(),"EX",60*60)
 
