@@ -85,7 +85,11 @@ async function loginUser(req,res) {
         expiresIn:"3d"
     })
 
-    res.cookie("token",token)
+    res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,       // 🔥 REQUIRED for HTTPS (Render)
+  sameSite: "none"    // 🔥 REQUIRED for cross-origin
+});
 
     return res.status(200).json({
         message:"user loggedIn successfully",
