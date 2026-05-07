@@ -5,15 +5,19 @@ const path = require("path")
 
 const app = express()
 
+app.set("trust proxy", 1)
+
 app.use(express.json())
 app.use(cookieParser())
 
 app.use(cors({
-  origin: true,
+  origin: "https://moodify-woks.onrender.com",
   credentials: true
 }))
 
 app.use(express.static(path.join(process.cwd(), "public")))
+
+
 
 // routes
 const authRoutes = require("./routes/auth.routes")

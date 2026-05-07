@@ -38,11 +38,13 @@ async function registerUser(req,res) {
         expiresIn:"3d"
     })
 
-    res.cookie("token", token, {
+   res.cookie("token", token, {
   httpOnly: true,
   secure: true,
   sameSite: "none",
-  path: "/"
+  path: "/",
+  maxAge: 3 * 24 * 60 * 60 * 1000
+
 });
 
     return res.status(201).json({
@@ -90,12 +92,13 @@ async function loginUser(req,res) {
         expiresIn:"3d"
     })
 
-   res.cookie("token", token, {
+  res.cookie("token", token, {
   httpOnly: true,
   secure: true,
   sameSite: "none",
-  path: "/"
-});
+  path: "/",
+  maxAge: 3 * 24 * 60 * 60 * 1000
+})
 
     return res.status(200).json({
         message:"user loggedIn successfully",

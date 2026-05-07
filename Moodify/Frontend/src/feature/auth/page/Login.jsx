@@ -32,6 +32,8 @@ const Login = () => {
                   setPassword(e.target.value)
                 }} type="password" name="password" id="password" placeholder='Enter password' />
                 <button className='primary-btn'>Login</button>
+                 <p>Don't have an account ? <Link to={"/register"}>Register</Link></p>
+
   
             </form>
         </div>
