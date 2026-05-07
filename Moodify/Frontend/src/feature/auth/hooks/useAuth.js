@@ -1,47 +1,98 @@
 import { useContext, useEffect } from "react";
-import {login,register,getMe,logout}  from "../service/auth.api"
+import { login, register, getMe, logout } from "../service/auth.api";
 import { AuthDataContext } from "../context/AuthContext";
 
+export function useAuth() {
+  const context = useContext(AuthDataContext);
+  const { user, setUser, loading, setLoading } = context;
 
+  async function handleRegister({username,email,password}) {
 
-export  function useAuth() {
-    const context  = useContext(AuthDataContext)
-    const {user,setUser,loading,setLoading} = context
+    try {
 
-   async function handleRegister({username,email,password}) {
-      setLoading(true)
-      const data = await register({username,email,password})
-      setUser(data.user)
-      setLoading(false)
-   }
+        setLoading(true)
 
-   async function handleLogin({email,password}) {
-    setLoading(true)
-    const data = await login({email,password})
-    setUser(data.user)
-    setLoading(false)
-   }
+        const data = await register({username,email,password})
 
-   async function handleGetMe() {
-    setLoading(true)
-    const data = await getMe()
-    setUser(data.user)
-    setLoading(false)
-   }
+        setUser(data.user)
 
-   async function handleLogout() {
-    setLoading(true)
-    const data = await logout()
-    setUser(null)
-    setLoading(false)
-   }
+    } catch (error) {
 
-   useEffect(()=>{
-       handleGetMe()
-   },[])
+        console.log(error)
 
-   return( {
-    user,loading,handleRegister,handleLogin,handleGetMe,handleLogout
-   })
-    
+    } finally {
+
+        setLoading(false)
+
+    }
+}
+
+  async function handleLogin({email,password}) {
+
+    try {
+
+        setLoading(true)
+
+        const data = await login({email,password})
+
+        setUser(data.user)
+
+    } catch (error) {
+
+        console.log(error)
+
+    } finally {
+
+        setLoading(false)
+
+    }
+}
+
+  async function handleGetMe() {
+    try {
+      setLoading(true);
+
+      const data = await getMe();
+
+      setUser(data.user);
+    } catch (error) {
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function handleLogout() {
+
+    try {
+
+        setLoading(true)
+
+        await logout()
+
+        setUser(null)
+
+    } catch (error) {
+
+        console.log(error)
+
+    } finally {
+
+        setLoading(false)
+
+    }
+}
+
+  useEffect(() => {
+    handleGetMe();
+  }, []);
+
+  return {
+    user,
+    loading,
+    handleRegister,
+    handleLogin,
+    handleGetMe,
+    handleLogout,
+  };
 }
