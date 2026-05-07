@@ -83,10 +83,7 @@ export function useAuth() {
     }
 }
 
-  useEffect(() => {
-    handleGetMe();
-  }, []);
-
+  
   return {
     user,
     loading,
